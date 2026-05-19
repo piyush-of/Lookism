@@ -31,7 +31,32 @@
 .card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: var(--primary);
+}
+
+.highlightCard {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.1));
+  border: 2px solid var(--primary);
+  text-align: center;
+  padding: 2.5rem;
+}
+
+.highlightCard .cardHeader {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.complimentText {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--foreground);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.pinkIcon {
+  color: var(--primary);
 }
 
 .cardHeader {

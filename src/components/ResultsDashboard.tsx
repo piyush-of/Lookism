@@ -1,17 +1,18 @@
 "use client";
 
-import { Activity, Palette, Type, ScanFace, RotateCcw, Star, Shirt } from "lucide-react";
+import { Activity, Palette, Sparkles, ScanFace, RotateCcw, Star, Shirt, Heart, Smile } from "lucide-react";
 import styles from "./ResultsDashboard.module.css";
 
 interface AnalysisResult {
   shape: string;
-  shapeDescription: string;
+  faceShape: string;
   colorTone: string;
-  colorUndertone: string;
+  colorSeason: string;
+  styleArchetype: string;
   texture: string;
-  figure: string;
   personalityRating: string;
-  dressingSense: string;
+  stylingTips: string;
+  cuteCompliment: string;
 }
 
 interface ResultsDashboardProps {
@@ -22,67 +23,58 @@ interface ResultsDashboardProps {
 export default function ResultsDashboard({ result, onReset }: ResultsDashboardProps) {
   return (
     <div className={styles.dashboard}>
+      
+      {/* Highlight/Compliment Section */}
+      <div className={`${styles.card} ${styles.highlightCard}`}>
+        <div className={styles.cardHeader}>
+          <Heart className={styles.pinkIcon} size={24} fill="currentColor" />
+          <h3 className={styles.cardTitle}>Lookism Highlight</h3>
+        </div>
+        <p className={styles.complimentText}>"{result.cuteCompliment}"</p>
+      </div>
+
       <div className={styles.grid}>
         
-        {/* Personality Rating Card */}
+        {/* Vibe & Archetype */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <Star size={24} />
-            <h3 className={styles.cardTitle}>Vibe & Personality</h3>
+            <h3 className={styles.cardTitle}>Vibe & Archetype</h3>
           </div>
-          <div className={styles.cardValue}>{result.personalityRating?.split("-")[0]?.trim() || "N/A"}</div>
-          <p className={styles.cardDescription}>{result.personalityRating?.split("-")[1]?.trim() || result.personalityRating}</p>
+          <div className={styles.cardValue}>{result.styleArchetype}</div>
+          <p className={styles.cardDescription}>{result.personalityRating}</p>
         </div>
 
-        {/* Dressing Sense Card */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <Shirt size={24} />
-            <h3 className={styles.cardTitle}>Dressing Sense</h3>
-          </div>
-          <div className={styles.cardValue}>Style Analysis</div>
-          <p className={styles.cardDescription}>{result.dressingSense}</p>
-        </div>
-        
-        {/* Body Shape Card */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <Activity size={24} />
-            <h3 className={styles.cardTitle}>Body Shape</h3>
-          </div>
-          <div className={styles.cardValue}>{result.shape || "Unknown"}</div>
-          <p className={styles.cardDescription}>{result.shapeDescription}</p>
-        </div>
-
-        {/* Color Palette Card */}
+        {/* Color Season */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <Palette size={24} />
-            <h3 className={styles.cardTitle}>Skin Tone & Undertone</h3>
+            <h3 className={styles.cardTitle}>Color Palette</h3>
           </div>
-          <div className={styles.cardValue}>{result.colorTone}</div>
-          <p className={styles.cardDescription}>Undertone: {result.colorUndertone}</p>
+          <div className={styles.cardValue}>{result.colorSeason}</div>
+          <p className={styles.cardDescription}>Tone: {result.colorTone}</p>
           <div className={styles.colorSwatch}></div>
         </div>
-
-        {/* Texture Card */}
+        
+        {/* Face & Body */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <ScanFace size={24} />
-            <h3 className={styles.cardTitle}>Skin Texture</h3>
+            <Smile size={24} />
+            <h3 className={styles.cardTitle}>Face & Body</h3>
           </div>
-          <div className={styles.cardValue}>{result.texture || "Smooth"}</div>
-          <p className={styles.cardDescription}>Analysis indicates a predominantly {result.texture?.toLowerCase()} texture pattern.</p>
+          <div className={styles.cardValue}>{result.faceShape} Face</div>
+          <p className={styles.cardDescription}>Body Shape: {result.shape}</p>
         </div>
 
-        {/* Figure Card */}
+        {/* Styling Tips */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <Type size={24} />
-            <h3 className={styles.cardTitle}>Figure Profile</h3>
+            <Sparkles size={24} />
+            <h3 className={styles.cardTitle}>Styling Tips</h3>
           </div>
-          <div className={styles.cardValue}>Proportional Analysis</div>
-          <p className={styles.cardDescription}>{result.figure}</p>
+          <p className={styles.cardDescription} style={{ color: "var(--foreground)", whiteSpace: "pre-line" }}>
+            {result.stylingTips}
+          </p>
         </div>
 
       </div>

@@ -43,23 +43,24 @@ export async function POST(req: NextRequest) {
     // Zero out the buffer immediately for privacy
     decryptedImageBuffer.fill(0);
 
-    const prompt = `Analyze this image. 
+const prompt = `Analyze this image. 
 FIRST, check if the image contains a clear human person. 
 If it DOES NOT contain a human person (e.g. it is an object, animal, landscape, or non-living thing), you MUST respond EXACTLY with this JSON:
 { "error": "No human detected in the image. Please upload a photo of a person." }
 
-If it DOES contain a human, provide a structured JSON response containing the following analysis:
+If it DOES contain a human, provide a structured JSON response containing the following aesthetic analysis:
 1. "shape": The body shape (e.g., Triangle, Inverted Triangle, Rectangle, Hourglass).
-2. "shapeDescription": A brief, positive description of this shape.
-3. "colorTone": The skin tone (e.g., Fair, Medium, Deep) and a suggested complementary color palette.
-4. "colorUndertone": The skin undertone (Cool, Warm, Neutral).
-5. "texture": A brief analysis of skin/clothing texture visibility.
-6. "figure": A short positive summary of the overall figure/proportions.
-7. "personalityRating": A rating out of 10 based on the overall vibe and expression, with a short descriptive phrase (e.g., "9/10 - Energetic & Friendly").
-8. "dressingSense": An analysis of the person's dressing sense, style, and clothing choices.
+2. "faceShape": The face shape (e.g., Oval, Diamond, Heart, Square, Round).
+3. "colorTone": The skin tone (e.g., Fair, Medium, Deep) and undertone.
+4. "colorSeason": The seasonal color palette (e.g., Deep Winter, Light Spring, Soft Autumn).
+5. "styleArchetype": A fashion archetype that fits their vibe (e.g., Minimalist, Old Money, Streetwear, Y2K).
+6. "texture": A brief analysis of skin/clothing texture and materials that would look good on them.
+7. "personalityRating": A vibe rating out of 10 with a short descriptive phrase (e.g., "9/10 - Energetic & Friendly").
+8. "stylingTips": Two or three highly specific, actionable styling tips to enhance their look.
+9. "cuteCompliment": A very sweet, charming, and personalized compliment about their skin, eyes, or overall aesthetic.
 
 Respond ONLY with raw JSON. No markdown backticks, no code formatting. Format:
-{ "shape": "...", "shapeDescription": "...", "colorTone": "...", "colorUndertone": "...", "texture": "...", "figure": "...", "personalityRating": "...", "dressingSense": "..." }`;
+{ "shape": "...", "faceShape": "...", "colorTone": "...", "colorSeason": "...", "styleArchetype": "...", "texture": "...", "personalityRating": "...", "stylingTips": "...", "cuteCompliment": "..." }`;
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",

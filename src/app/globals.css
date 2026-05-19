@@ -1,21 +1,41 @@
 :root {
-  --background: #0f1115;
-  --foreground: #f8f9fa;
-  --primary: #8b5cf6;
-  --primary-hover: #7c3aed;
-  --surface: #1e2028;
-  --surface-hover: #262933;
-  --border: #2d303b;
+  /* Light Mode (Cute & Soft) */
+  --background: #fff0f5; /* Lavender blush */
+  --foreground: #4a4a4a;
+  --primary: #ec4899; /* Cute Pink */
+  --secondary: #a855f7; /* Soft Purple */
+  --primary-hover: #db2777;
+  --surface: #ffffff;
+  --surface-hover: #fdf2f8;
+  --border: #fbcfe8;
   --success: #10b981;
   --error: #ef4444;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --font-sans: var(--font-geist-sans), sans-serif;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --font-sans: var(--font-sans), sans-serif;
+  --font-display: var(--font-display), serif;
+  --shadow-sm: 0 4px 12px rgba(236, 72, 153, 0.1);
+  --shadow-md: 0 10px 20px rgba(236, 72, 153, 0.15);
+  --shadow-lg: 0 20px 30px rgba(236, 72, 153, 0.2);
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode (Deep & Elegant) */
+    --background: #1a1625; /* Deep purple background */
+    --foreground: #f8f9fa;
+    --primary: #f472b6; /* Lighter pink for dark mode */
+    --secondary: #c084fc;
+    --primary-hover: #f9a8d4;
+    --surface: #2d2438;
+    --surface-hover: #3d314a;
+    --border: #4a3b5c;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 30px rgba(0, 0, 0, 0.5);
+  }
 }
 
 * {
@@ -32,6 +52,11 @@ body {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
 }
 
 a {
