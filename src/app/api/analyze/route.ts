@@ -33,18 +33,8 @@ export async function POST(req: NextRequest) {
     // Construct the AI SDK call
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      // Return mock data for testing if API key is not present
-      console.warn("No GEMINI_API_KEY found, returning mock analysis.");
-      return NextResponse.json({
-        shape: "Hourglass",
-        shapeDescription: "A balanced, proportionate shape with defined curves.",
-        colorTone: "Medium Olive",
-        colorUndertone: "Warm",
-        texture: "Smooth & Clear",
-        figure: "Balanced silhouette with natural symmetry.",
-        personalityRating: "8.5/10 - Confident & Approachable",
-        dressingSense: "Classic with a touch of modern elegance. Great color coordination."
-      });
+      console.error("No GEMINI_API_KEY found in environment variables.");
+      return NextResponse.json({ error: "API Key not configured. Please add GEMINI_API_KEY to your .env.local file." }, { status: 500 });
     }
 
     const ai = new GoogleGenAI({ apiKey: apiKey });
@@ -53,7 +43,12 @@ export async function POST(req: NextRequest) {
     // Zero out the buffer immediately for privacy
     decryptedImageBuffer.fill(0);
 
-    const prompt = `Analyze this image of a person. Provide a structured JSON response containing the following analysis:
+    const prompt = `Analyze this image. 
+FIRST, check if the image contains a clear human person. 
+If it DOES NOT contain a human person (e.g. it is an object, animal, landscape, or non-living thing), you MUST respond EXACTLY with this JSON:
+{ "error": "No human detected in the image. Please upload a photo of a person." }
+
+If it DOES contain a human, provide a structured JSON response containing the following analysis:
 1. "shape": The body shape (e.g., Triangle, Inverted Triangle, Rectangle, Hourglass).
 2. "shapeDescription": A brief, positive description of this shape.
 3. "colorTone": The skin tone (e.g., Fair, Medium, Deep) and a suggested complementary color palette.

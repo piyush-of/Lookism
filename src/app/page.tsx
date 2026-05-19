@@ -28,15 +28,20 @@ export default function Home() {
         body: formData,
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Analysis failed");
+        throw new Error(data.error || "Analysis failed due to a server error.");
       }
 
-      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
       setAnalysisResult(data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Failed to analyze image securely. Please try again.");
+      alert(error.message || "Failed to analyze image securely. Please try again.");
     } finally {
       setIsAnalyzing(false);
     }
