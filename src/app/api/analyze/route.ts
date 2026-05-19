@@ -41,7 +41,9 @@ export async function POST(req: NextRequest) {
         colorTone: "Medium Olive",
         colorUndertone: "Warm",
         texture: "Smooth & Clear",
-        figure: "Balanced silhouette with natural symmetry."
+        figure: "Balanced silhouette with natural symmetry.",
+        personalityRating: "8.5/10 - Confident & Approachable",
+        dressingSense: "Classic with a touch of modern elegance. Great color coordination."
       });
     }
 
@@ -58,9 +60,11 @@ export async function POST(req: NextRequest) {
 4. "colorUndertone": The skin undertone (Cool, Warm, Neutral).
 5. "texture": A brief analysis of skin/clothing texture visibility.
 6. "figure": A short positive summary of the overall figure/proportions.
+7. "personalityRating": A rating out of 10 based on the overall vibe and expression, with a short descriptive phrase (e.g., "9/10 - Energetic & Friendly").
+8. "dressingSense": An analysis of the person's dressing sense, style, and clothing choices.
 
 Respond ONLY with raw JSON. No markdown backticks, no code formatting. Format:
-{ "shape": "...", "shapeDescription": "...", "colorTone": "...", "colorUndertone": "...", "texture": "...", "figure": "..." }`;
+{ "shape": "...", "shapeDescription": "...", "colorTone": "...", "colorUndertone": "...", "texture": "...", "figure": "...", "personalityRating": "...", "dressingSense": "..." }`;
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",

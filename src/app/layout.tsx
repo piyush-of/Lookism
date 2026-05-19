@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shariram - AI Body Analyzer",
+  title: "Lookism - AI Body Analyzer",
   description: "Secure, encrypted, AI-powered body shape, color, and texture analysis.",
 };
 

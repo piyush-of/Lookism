@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Palette, Type, ScanFace, RotateCcw } from "lucide-react";
+import { Activity, Palette, Type, ScanFace, RotateCcw, Star, Shirt } from "lucide-react";
 import styles from "./ResultsDashboard.module.css";
 
 interface AnalysisResult {
@@ -10,6 +10,8 @@ interface AnalysisResult {
   colorUndertone: string;
   texture: string;
   figure: string;
+  personalityRating: string;
+  dressingSense: string;
 }
 
 interface ResultsDashboardProps {
@@ -21,6 +23,26 @@ export default function ResultsDashboard({ result, onReset }: ResultsDashboardPr
   return (
     <div className={styles.dashboard}>
       <div className={styles.grid}>
+        
+        {/* Personality Rating Card */}
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
+            <Star size={24} />
+            <h3 className={styles.cardTitle}>Vibe & Personality</h3>
+          </div>
+          <div className={styles.cardValue}>{result.personalityRating?.split("-")[0]?.trim() || "N/A"}</div>
+          <p className={styles.cardDescription}>{result.personalityRating?.split("-")[1]?.trim() || result.personalityRating}</p>
+        </div>
+
+        {/* Dressing Sense Card */}
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
+            <Shirt size={24} />
+            <h3 className={styles.cardTitle}>Dressing Sense</h3>
+          </div>
+          <div className={styles.cardValue}>Style Analysis</div>
+          <p className={styles.cardDescription}>{result.dressingSense}</p>
+        </div>
         
         {/* Body Shape Card */}
         <div className={styles.card}>

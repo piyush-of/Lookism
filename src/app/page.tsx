@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Shariram</h1>
+        <h1 className={styles.title}>Lookism</h1>
         <p className={styles.subtitle}>
           AI-Powered, Privacy-First Body Analysis.
           <br />
