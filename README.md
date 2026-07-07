@@ -75,22 +75,7 @@ To run Lookism locally on your machine, follow these steps:
    ```
 
 5. **Open in browser:**
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
-
----
-
-## ☁️ Deployment
-
-Lookism is optimized for zero-configuration deployment on **Vercel**. 
-
-1. Push your code to a GitHub repository.
-2. Sign in to [Vercel](https://vercel.com/) with your GitHub account.
-3. Click **Add New Project** and select the `Lookism` repository.
-4. Under **Environment Variables**, add:
-   - `GEMINI_API_KEY`: (Your Google Gemini API Key)
-5. Click **Deploy**. Vercel will automatically build and host your Next.js application globally.
-
----
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the applicable
 
 <div align="center">
   <i>Designed and developed with extreme care for privacy and beautiful aesthetics.</i>
